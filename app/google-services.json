@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "694088316298",
+    "firebase_url": "https://travel-guide-a55a1.firebaseio.com",
+    "project_id": "travel-guide-a55a1",
+    "storage_bucket": "travel-guide-a55a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694088316298:android:8a23c494f015083d9f0473",
+        "android_client_info": {
+          "package_name": "com.trres.travelguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694088316298-lo0k1102eij80gdr2rjs23nrikmodm6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdlxfZE47TjZ1IjKbcgCjfbfX_9kfRa9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694088316298-lo0k1102eij80gdr2rjs23nrikmodm6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
