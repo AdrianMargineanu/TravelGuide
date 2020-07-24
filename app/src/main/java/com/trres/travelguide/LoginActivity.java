@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                         FirebaseUser user = mAuth.getCurrentUser();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        startActivity(new Intent(LoginActivity.this, NavigationActivity.class));
                     } else {
                         Toast.makeText(LoginActivity.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
@@ -72,5 +72,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void RegisterOnClick(View view) {
         startActivity(new Intent(this,RegisterActivity.class));
+    }
+
+    public void testFiled(View view) {
+        startActivity(new Intent(this,MainActivity.class));
     }
 }
