@@ -16,20 +16,12 @@ import com.trres.travelguide.R;
 
 public class AboutUsFragment extends Fragment {
 
-    private AboutUsViewModel aboutUsViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        aboutUsViewModel =
-                ViewModelProviders.of(this).get(AboutUsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_about_us, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        aboutUsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.weather.ReadOnlyActivity"></activity>
         <activity android:name=".ui.home.NewTripActivity" />
-        <activity android:name=".ui.share.ShareActivity" />
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"

@@ -59,12 +59,12 @@ public class NewTripActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        yearStartDate  = -1;
+        yearStartDate = -1;
         monthStartDate = -1;
-        dayStartDate   = -1;
-        yearEndDate    = -1;
-        monthEndDate   = -1;
-        dayEndDate     = -1;
+        dayStartDate = -1;
+        yearEndDate = -1;
+        monthEndDate = -1;
+        dayEndDate = -1;
         id = -1;
         setContentView(R.layout.activity_new_trip);
         tripLocationEditText = findViewById(R.id.trip_location);

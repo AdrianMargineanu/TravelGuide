@@ -8,8 +8,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_black_18dp"
             android:title="@string/menu_home" />
-        <!--TODO: Schimba icons-->
-        <!--TODO: redenumeste xml respective-->
+
         <item
             android:id="@+id/nav_about_us"
             android:icon="@drawable/outline_info_black_18dp"

@@ -33,17 +33,28 @@
         android:id="@+id/nav_about_us"
         android:name="com.trres.travelguide.ui.aboutus.AboutUsFragment"
         android:label="@string/menu_about_us"
-        tools:layout="@layout/fragment_about_us" />
+        tools:layout="@layout/fragment_about_us" >
+        <action
+            android:id="@+id/action_nav_about_us_to_nav_home_second"
+            app:destination="@id/nav_home_second" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_contact"
         android:name="com.trres.travelguide.ui.contact.ContactFragment"
         android:label="@string/menu_contact"
-        tools:layout="@layout/fragment_contact" />
-    <!--TODO: fragmentul share-->
+        tools:layout="@layout/fragment_contact" >
+        <action
+            android:id="@+id/action_nav_contact_to_nav_home_second"
+            app:destination="@id/nav_home_second" />
+    </fragment>
     <fragment
         android:id="@+id/nav_share"
         android:name="com.trres.travelguide.ui.contact.ContactFragment"
         android:label="@string/menu_share"
-        tools:layout="@layout/fragment_about_us" />
+        tools:layout="@layout/share_fragment" >
+        <action
+            android:id="@+id/action_nav_share_to_nav_home_second"
+            app:destination="@id/nav_home_second" />
+    </fragment>
 </navigation>
