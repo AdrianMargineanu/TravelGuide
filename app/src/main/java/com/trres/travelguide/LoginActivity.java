@@ -73,8 +73,4 @@ public class LoginActivity extends AppCompatActivity {
     public void RegisterOnClick(View view) {
         startActivity(new Intent(this,RegisterActivity.class));
     }
-
-    public void testFiled(View view) {
-        startActivity(new Intent(this,MainActivity.class));
-    }
 }

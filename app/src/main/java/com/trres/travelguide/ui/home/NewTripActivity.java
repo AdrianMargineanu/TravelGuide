@@ -38,7 +38,6 @@ public class NewTripActivity extends AppCompatActivity {
     private TextView tripCostTextView;
     private TextView startDateTextView;
     private TextView endDateTextView;
-    private ImageView trip_image;
     private RatingBar ratingBar;
 
     private String tripName;
@@ -73,7 +72,6 @@ public class NewTripActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         tripCostTextView = findViewById(R.id.cost);
         setCost(seekBar.getMin());
-        trip_image = findViewById(R.id.temp_image);
         ratingBar = findViewById(R.id.ratingBar);
         Bundle bundle = getIntent().getExtras();
         startDateTextView = findViewById(R.id.start_date_text_view);
@@ -166,13 +164,6 @@ public class NewTripActivity extends AppCompatActivity {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 imagine = stream.toByteArray();
-                trip_image.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        trip_image.setImageBitmap(Bitmap.createScaledBitmap(bitmap,
-                                trip_image.getWidth(),trip_image.getHeight(),false));
-                    }
-                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -251,15 +242,7 @@ public class NewTripActivity extends AppCompatActivity {
                 bundle.getInt(HomeFragment.MONTH_END_DATE),
                 bundle.getInt(HomeFragment.DAY_END_DATE),false);
         imagine = bundle.getByteArray(HomeFragment.IMAGE);
-        trip_image.post(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imagine,0,
-                        imagine.length);
-                trip_image.setImageBitmap(Bitmap.createScaledBitmap(bitmap,
-                        trip_image.getWidth(),trip_image.getHeight(),false));
-            }
-        });
+
         type = bundle.getInt(HomeFragment.TYPE);
         RadioButton radioButton;
         switch (type){
@@ -271,7 +254,6 @@ public class NewTripActivity extends AppCompatActivity {
                 break;
             case 2:
                 radioButton = findViewById(R.id.mountains);
-
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);

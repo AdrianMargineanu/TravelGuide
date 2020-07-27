@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.trres.travelguide.MainActivity;
 import com.trres.travelguide.R;
 import com.trres.travelguide.ui.home.room.RecyclerTouchListener;
 import com.trres.travelguide.ui.home.room.Trip;
@@ -26,7 +24,6 @@ import com.trres.travelguide.ui.home.room.TripViewModel;
 import com.trres.travelguide.ui.home.room.TripsClickListener;
 import com.trres.travelguide.ui.home.weather.ReadOnlyActivity;
 
-import java.util.EventListener;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
