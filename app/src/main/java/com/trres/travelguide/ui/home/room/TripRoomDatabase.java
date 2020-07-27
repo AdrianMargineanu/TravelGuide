@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Trip.class},version = 1, exportSchema = false)
+@Database(entities = {Trip.class},version = 3, exportSchema = false)
 public abstract class TripRoomDatabase extends RoomDatabase {
     public abstract TripDao tripDao();
 
@@ -44,4 +44,5 @@ public abstract class TripRoomDatabase extends RoomDatabase {
             });
         }
     };
+
 }

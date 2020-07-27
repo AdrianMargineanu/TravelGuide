@@ -23,4 +23,5 @@ public class TripRepository {
     void insert(Trip trip){
         TripRoomDatabase.databaseWriteExecutor.execute(()->tripDao.insert(trip));
     }
+
 }

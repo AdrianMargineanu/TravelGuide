@@ -1,8 +1,11 @@
 package com.trres.travelguide.ui.home.room;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +16,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.trres.travelguide.R;
+import com.trres.travelguide.ui.home.HomeFragment;
+import com.trres.travelguide.ui.home.NewTripActivity;
 
 import java.util.List;
 
-public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripViewHolder> {
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+import static androidx.core.content.ContextCompat.startActivity;
 
-    public class TripViewHolder extends RecyclerView.ViewHolder {
+
+public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripViewHolder>{
+
+    public static final int EDIT_TRIP_ACTIVITY_REQUEST_CODE = 3;
+
+    public class TripViewHolder extends RecyclerView.ViewHolder  /*implements RecyclerView.OnLongClickListener*/{
         private ImageView imageView;
         private TextView tripNameTextView;
         private TextView tripLocationTextView;
@@ -34,9 +47,35 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             tripLocationTextView = itemView.findViewById(R.id.destination);
             tripCostTextView = itemView.findViewById(R.id.price);
             favoriteCheckBox = itemView.findViewById(R.id.favorite);
+
         }
+
+//        @Override
+//        public boolean onLongClick(View v) {
+//            int i =getAdapterPosition();
+//            Trip current = trips.get(i);
+//            Intent intent =  new Intent(v.getContext(),NewTripActivity.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putString(HomeFragment.NAME,current.getName());
+//            bundle.putString(HomeFragment.LOCATION,current.getDestination());
+//            bundle.putInt(HomeFragment.PRICE,current.getPrice());
+//            bundle.putByteArray(HomeFragment.IMAGE,current.getImg());
+//            bundle.putInt(HomeFragment.YEAR_START_DATE,current.getYearStartDate());
+//            bundle.putInt(HomeFragment.MONTH_START_DATE,current.getMonthStartDate());
+//            bundle.putInt(HomeFragment.DAY_START_DATE,current.getDayStartDate());
+//            bundle.putInt(HomeFragment.YEAR_END_DATE,current.getYearEndDate());
+//            bundle.putInt(HomeFragment.MONTH_END_DATE,current.getMonthEndDate());
+//            bundle.putInt(HomeFragment.DAY_END_DATE,current.getDayEndDate());
+//            bundle.putDouble(HomeFragment.RATING,current.getRating());
+//            bundle.putInt(HomeFragment.TYPE,current.getType());
+//            intent.putExtras(bundle);
+//            ((Activity) v.getContext()).startActivityForResult(intent,
+//                    HomeFragment.NEW_TRIP_ACTIVITY_REQUEST_CODE,bundle);
+//            return false;
+//        }
     }
 
+    ViewGroup parent;
     private Context context;
     private List<Trip> trips;
 
@@ -44,7 +83,9 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
 
     @Override
     public TripViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view,parent,false);
+        this.parent = parent;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view,parent,
+                false);
         return new TripViewHolder(itemView);
     }
 
@@ -65,9 +106,36 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                             holder.imageView.getWidth(), holder.imageView.getHeight(),false));
                 }
             });
+            /*holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent =  new Intent(v.getContext(),NewTripActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(HomeFragment.NAME,current.getName());
+                    bundle.putString(HomeFragment.LOCATION,current.getDestination());
+                    bundle.putInt(HomeFragment.PRICE,current.getPrice());
+                    bundle.putByteArray(HomeFragment.IMAGE,current.getImg());
+                    bundle.putInt(HomeFragment.YEAR_START_DATE,current.getYearStartDate());
+                    bundle.putInt(HomeFragment.MONTH_START_DATE,current.getMonthStartDate());
+                    bundle.putInt(HomeFragment.DAY_START_DATE,current.getDayStartDate());
+                    bundle.putInt(HomeFragment.YEAR_END_DATE,current.getYearEndDate());
+                    bundle.putInt(HomeFragment.MONTH_END_DATE,current.getMonthEndDate());
+                    bundle.putInt(HomeFragment.DAY_END_DATE,current.getDayEndDate());
+                    bundle.putDouble(HomeFragment.RATING,current.getRating());
+                    bundle.putInt(HomeFragment.TYPE,current.getType());
+                    intent.putExtras(bundle);
+                    ((Activity) parent.getContext()).startActivityForResult(intent,
+                            HomeFragment.NEW_TRIP_ACTIVITY_REQUEST_CODE,bundle);
+                    return true;
+                }
+            });*/
         }else{
             Toast.makeText(context,"NO TRIPS",Toast.LENGTH_LONG);
         }
+    }
+
+    public Trip getTrip(int position){
+        return trips.get(position);
     }
 
     public void setTrips(List<Trip> trips){

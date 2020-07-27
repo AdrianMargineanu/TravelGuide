@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.home.NewTripActivity"></activity>
+        <activity android:name=".ui.home.weather.ReadOnlyActivity"></activity>
+        <activity android:name=".ui.home.NewTripActivity" />
         <activity android:name=".ui.share.ShareActivity" />
         <activity
             android:name=".NavigationActivity"

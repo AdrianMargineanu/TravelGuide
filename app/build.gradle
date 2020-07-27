@@ -19,6 +19,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_KEY", '"0685c83c287ca49fdb0ea026bae9f359"'
+            buildConfigField "String", "BASE_API_WEATHER", '"https://api.openweathermap.org/data/2.5/"'
+        }
+        debug{
+            buildConfigField "String", "API_KEY", '"0685c83c287ca49fdb0ea026bae9f359"'
+            buildConfigField "String", "BASE_API_WEATHER", '"https://api.openweathermap.org/data/2.5/"'
         }
     }
     compileOptions {
@@ -46,4 +52,6 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.2.5'
     annotationProcessor 'androidx.room:room-compiler:2.2.5'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 }
