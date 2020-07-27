@@ -7,19 +7,22 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.RadioButton;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.matteobattilana.weather.PrecipType;
+import com.github.matteobattilana.weather.WeatherView;
 import com.trres.travelguide.R;
 import com.trres.travelguide.ui.home.HomeFragment;
 
 public class ReadOnlyActivity extends AppCompatActivity {
     private WeatherRepository weatherRepository;
     private String location;
+    private WeatherView weatherView;
 
-
+    private ImageView icon;
     private TextView nameTextView;
     private TextView locationTextView;
     private TextView costTextView;
@@ -39,17 +42,24 @@ public class ReadOnlyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_only);
         setView();
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         if(location != null) {
             weatherRepository = WeatherRepository.getInstance();
             weatherRepository.getWeather(new OnGetWeatherCallBack() {
                 @Override
                 public void onSuccess(Weather weather) {
+                    weather.setWeather();
+                    setIcon(weather);
+                    Log.e("ReadOnly",weather.getGeneral().get(0).getMain());
                     generalTextView.setText(weather.getGeneral().get(0).getMain());
                     descriptionTextView.setText(weather.getGeneral().get(0).getDescription());
                     tempMedTextView.setText("Current temperature " + convector(weather.getTemperature().getMed()) + " C");
                     tempMinTextView.setText("Minimum temperature " + convector(weather.getTemperature().getTempMin()) + " C");
                     tempMaxTextView.setText("Maximum temperature " + convector(weather.getTemperature().getTempMax()) + " C");
                     tempFeelsTextView.setText("Temperature feels like " + convector(weather.getTemperature().getFeelsLike()) + " C");
+                    weatherView.setWeatherData(weather);
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
                 }
 
                 @Override
@@ -58,6 +68,20 @@ public class ReadOnlyActivity extends AppCompatActivity {
                 }
             }, location);
         }
+
+    }
+
+    private void setIcon(Weather weather) {
+        if(weather.getPrecipType().compareTo(PrecipType.CLEAR) == 0){
+            icon.setImageResource(R.drawable.sun);
+        }else if(weather.getPrecipType().compareTo(PrecipType.RAIN) == 0){
+            icon.setImageResource(R.drawable.rain);
+        }else if(weather.getPrecipType().compareTo(PrecipType.SNOW) == 0){
+            icon.setImageResource(R.drawable.snow);
+        }else{
+            icon.setImageResource(R.drawable.cloud);
+        }
+
     }
 
     private double convector (Double temp){
@@ -87,6 +111,7 @@ public class ReadOnlyActivity extends AppCompatActivity {
 
     private void setView(){
         Bundle bundle = getIntent().getExtras();
+        weatherView = findViewById(R.id.weather_view);
         nameTextView = findViewById(R.id.name);
         location = bundle.getString(HomeFragment.LOCATION);
         nameTextView.setText(bundle.getString(HomeFragment.NAME));
@@ -117,5 +142,6 @@ public class ReadOnlyActivity extends AppCompatActivity {
                         imageView.getWidth(),imageView.getHeight(),false));
             }
         });
+        icon = findViewById(R.id.display_icon);
     }
 }
