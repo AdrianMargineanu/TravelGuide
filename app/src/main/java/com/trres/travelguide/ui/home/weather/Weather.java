@@ -27,7 +27,7 @@ public class Weather implements WeatherData {
         }else if(general.get(0).getMain().compareTo("Clear") == 0){
             precipType = PrecipType.CLEAR;
         }else{
-            precipType = PrecipType.SNOW;
+            precipType = null;
         }
     }
 

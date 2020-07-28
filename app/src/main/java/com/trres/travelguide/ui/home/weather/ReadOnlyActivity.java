@@ -58,7 +58,9 @@ public class ReadOnlyActivity extends AppCompatActivity {
                     tempMinTextView.setText("Minimum temperature " + convector(weather.getTemperature().getTempMin()) + " C");
                     tempMaxTextView.setText("Maximum temperature " + convector(weather.getTemperature().getTempMax()) + " C");
                     tempFeelsTextView.setText("Temperature feels like " + convector(weather.getTemperature().getFeelsLike()) + " C");
-                    weatherView.setWeatherData(weather);
+                    if(weather.getPrecipType() != null) {
+                        weatherView.setWeatherData(weather);
+                    }
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                 }
 
@@ -72,12 +74,16 @@ public class ReadOnlyActivity extends AppCompatActivity {
     }
 
     private void setIcon(Weather weather) {
-        if(weather.getPrecipType().compareTo(PrecipType.CLEAR) == 0){
-            icon.setImageResource(R.drawable.sun);
-        }else if(weather.getPrecipType().compareTo(PrecipType.RAIN) == 0){
-            icon.setImageResource(R.drawable.rain);
-        }else if(weather.getPrecipType().compareTo(PrecipType.SNOW) == 0){
-            icon.setImageResource(R.drawable.snow);
+        if(weather.getPrecipType() != null){
+            if(weather.getPrecipType().compareTo(PrecipType.CLEAR) == 0){
+                icon.setImageResource(R.drawable.sun);
+            }else if(weather.getPrecipType().compareTo(PrecipType.RAIN) == 0){
+                icon.setImageResource(R.drawable.rain);
+            }else if(weather.getPrecipType().compareTo(PrecipType.SNOW) == 0){
+                icon.setImageResource(R.drawable.snow);
+            }else{
+                icon.setImageResource(R.drawable.cloud);
+            }
         }else{
             icon.setImageResource(R.drawable.cloud);
         }
